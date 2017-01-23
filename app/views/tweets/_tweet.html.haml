@@ -1,0 +1,16 @@
+%tr
+  %td
+    - if tweet.user
+      %p
+        = link_to tweet.user.email, user_path(tweet.user)
+
+        = distance_of_time_in_words_to_now(tweet.created_at)
+      %p
+        - if tweet.text.include?("https:")||tweet.text.include?("https:")
+          = link_to tweet.text, tweet.text
+        - else
+          = tweet.text
+      %p
+        = link_to star_tweet_path(tweet) do
+          %span.star
+        = tweet.stars.count
